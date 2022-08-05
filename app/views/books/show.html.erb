@@ -1,0 +1,37 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <%= render 'users/userinfo', user: @user, book: @book_new %>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Book detail</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>
+                <%= image_tag @book.user.get_profile_image(100,100) %>
+                <div><%= link_to @user.name, user_path(@user) %></div>
+              </td>
+              <td>
+                <%= link_to @book.title, books_path(@book.id) %>
+              </td>
+              <td>
+                <%= @book.body %>
+              </td>
+              <% if @book.user == current_user %>
+                <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
+
+                <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure？" %></td>
+              <% end %>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
