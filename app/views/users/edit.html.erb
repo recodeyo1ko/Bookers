@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+     <h1>Use info</h1>
+
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>errors prohibited this book from being saved:
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      <% end %>
+      <%= form_with model: @user do |f| %>
+       <div class="form_grop">
+         <h4>Name</h4>
+         <%= f.text_field :name , class: "form-control user_name" %>
+       </div>
+
+        <div>
+         <h4>Image</h4>
+         <%= f.file_field :profile_image, accept: "image/*" , class: "from-control uesr_profile_image" %>
+        </div>
+
+        <div>
+         <h4>Introduction</h4>
+         <%= f.text_area :introduction , class: "form-control user_introduction" %>
+        </div>
+
+        <div>
+         <%= f.submit 'Update User',class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
