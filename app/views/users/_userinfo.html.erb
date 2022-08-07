@@ -13,10 +13,29 @@
             <th><%= user.introduction %></th>
             <th></th>
           </tr>
+
+          <tr>
+            <th>フォロー数</th>
+              <td>
+                <%= link_to user_followings_path(user) do %>
+                  <%= user.followings.count %>
+                <% end %>
+              </td>
+          </tr>
+
+          <tr>
+            <th>フォロワー数</th>
+            <td>
+              <%= link_to user_followers_path(user) do %>
+                <%= user.followers.count %>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
+
       <div class='row'>
-        <%= link_to edit_user_path(user), class: " btn-outline-secondary btn-sm mt-4" do %>
+        <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
           <i class="fas fa-user-cog"></i>
         <% end %>
       </div>
