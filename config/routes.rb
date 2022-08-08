@@ -16,5 +16,8 @@ Rails.application.routes.draw do
      get 'followers' => 'relationships#followers', as: 'followers'
   end
 
+  get "search" => "searches#search"
+  get "search_result" => "searches#search_result"
+
 
 end
