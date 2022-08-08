@@ -35,4 +35,23 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
+  def follow(user_id)
+  follower.create(followed_id: user_id)
+  end
+  # フォローを外すときの処理
+  def unfollow(user_id)
+    follower.find_by(followed_id: user_id).destroy
+  end
+  # フォローしているか判定
+  def following?(user)
+    #binding.pry
+    followings.include?(user)
+  end
+
 end
