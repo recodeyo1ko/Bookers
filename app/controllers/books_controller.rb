@@ -11,6 +11,9 @@ class BooksController < ApplicationController
       b.favorites.includes(:favorites).where(created_at: from...to).size <=> 
       a.favorites.includes(:favorites).where(created_at: from...to).size
     }
+    
+    # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
+
     @user = current_user
   end
 
