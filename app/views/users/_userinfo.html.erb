@@ -1,34 +1,32 @@
 <div class='col-md-3'>
-      <h2>User info</h2>
-      <table class='table'>
-        <tbody>
-          <tr></tr>
-          <tr>
-            <%= image_tag user.get_profile_image(100,100) %>
-            <th>name</th>
-            <th><%= user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= user.introduction %></th>
-            <th></th>
-          </tr>
-        </tbody>
-      </table>
-      <div class='row'>
-        <%= link_to edit_user_path(user), class: " btn-outline-secondary btn-sm mt-4" do %>
-          <i class="fas fa-user-cog"></i>
-        <% end %>
-      </div>
+  <h2>User info</h2>
+  <table class='table'>
+    <tbody>
+      <tr><%= image_tag user.get_profile_image(100,100) %></tr>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+  
+    <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
 
-      <h1>New book</h1>
-      <%= form_with model: book do |f| %>
+  <h1>New book</h1>
+  <%= form_with model: book do |f| %>
 
-        <h4>title</h4>
-        <%= f.text_field :title %>
+    <h4>title</h4>
+    <%= f.text_field :title ,class:" btn-block" %>
 
-        <h4>opinion</h4>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book', class: "btn btn-success"%>
-      <% end %>
-    </div>
+    <h4>opinion</h4>
+    <%= f.text_area :body ,class:" btn-block"%>
+    
+    <%= f.submit 'Create Book', class: "btn btn-success btn-block"%>
+  <% end %>
+</div>
