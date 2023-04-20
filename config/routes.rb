@@ -12,13 +12,13 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :relationships, only: [:create,:destroy]
-     get 'followings' => 'relationships#followings', as: 'followings'
-     get 'followers' => 'relationships#followers', as: 'followers'
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+    resources :chats, only: [:show, :create]
   end
 
   get "search" => "searches#search"
   get "search_result" => "searches#search_result"
 
-  resources :chats, only: [:show, :create]
 
 end

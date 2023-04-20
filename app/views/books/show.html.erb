@@ -1,6 +1,9 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-    <%= render 'users/userinfo', user: @user, book: @book_new %>
+    <div class='col-md-3'>
+      <%= render'users/userinfo',user: @user %>
+      <%= render'new_book',book: @book_new %>
+    </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Book detail</h2>
       <table class='table table-hover table-inverse'>
