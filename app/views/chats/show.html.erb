@@ -1,0 +1,32 @@
+<div class = "container">
+	<%= @user.name%>さんとのチャット
+		<div>
+			<% @chats.each do |chat| %>
+				<% if chat.user_id == current_user.id %>
+					<div >
+						<div class = "float-left">
+							<%= chat.message %>
+						</div>
+					</div>
+				<% else %>
+					<div class="float-right">
+						<div>
+							<%= chat.user.name %>
+						</div>
+						<div>
+							<%= chat.message %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+	<%= form_with model: @chat,url: chats_path do |f| %>
+		<%= f.text_field :message %>
+		<%= f.hidden_field :room_id %>
+		<%= f.hidden_field :user_id, :value => @user.id %>
+		<%= f.submit class: "btn btn-primary" %>
+	<% end %>
+
+</div>
