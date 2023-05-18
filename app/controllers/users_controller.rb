@@ -30,8 +30,12 @@ class UsersController < ApplicationController
 
   def search
     @user = User.find(params[:id])
-    @books = @user.books.where(created_at: params[:created_at].to_date.all_day)
-    render :show
+    @books = @user.books
+    #render :show
+    if params[:created_at]
+      @search_book = @books.where(created_at: params[:created_at].to_date.all_day)
+    end
+    
   end
 
   # ストロングパラメータ

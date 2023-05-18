@@ -196,7 +196,9 @@
     });
   </script>
       
-      <%= render 'search' , user: @user %>
+      <div class = "search_form">
+        <%= render 'search' , user: @user, search_book: @search_book%>
+      </div>
 
     </div>
   </div>
