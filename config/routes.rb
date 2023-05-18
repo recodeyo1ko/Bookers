@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
+  get 'users/:id/search'=> 'users#search' ,as: "user_search"
 end
