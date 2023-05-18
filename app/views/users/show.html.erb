@@ -30,6 +30,74 @@
           <% end %>
         </tbody>
       </table>
+
+      <table class ="table">
+        <thead>
+          <tr>
+            <th>
+              今日の投稿数
+            </th>
+            <th>
+              前日の投稿数
+            </th>
+            <th>
+              前日比
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <%= @user.books.where(created_at: Time.zone.now.all_day).count%>
+            </th>
+            <th>
+              <%= @user.books.where(created_at: 1.days.ago.all_day).count%>
+            </th>
+            <th>
+              <% if @user.books.where(created_at: Time.zone.now.all_day).count == 0 %>
+                0
+              <% else %>
+                <%= @user.books.where(created_at: Time.zone.now.all_day).count / @user.books.where(created_at: 1.day.ago.all_day).count.to_f %>
+              <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      
+      <table class ="table">
+        <thead>
+          <tr>
+            <th>
+              今週の投稿数
+            </th>
+            <th>
+              先週の投稿数
+            </th>
+            <th>
+              前週比
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <%= @user.books.where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day).count%>
+            </th>
+            <th>
+              <%= @user.books.where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day).count%>
+            </th>
+            <th>
+              <% if @user.books.where(created_at: Time.zone.now.all_day).count == 0 %>
+                0
+              <% else %>
+                <%= @user.books.where(created_at: Time.zone.now.all_day).count / @user.books.where(created_at: 1.day.ago.all_day).count.to_f %>
+              <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      
+
     </div>
   </div>
 </div>
