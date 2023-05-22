@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+	before_action :matual_follows?, only: [:show,:create]
+
 	def show
 		@user = User.find(params[:id])
 		rooms = current_user.user_rooms.pluck(:room_id)
@@ -28,5 +30,13 @@ class ChatsController < ApplicationController
 	def chat_params
 		params.require(:chat).permit(:message, :room_id)
 	end
+
+	def matual_follows?
+		user = User.find(params[:id])
+    unless current_user.following?(user) && user.following?(current_user)
+      redirect_to users_path
+    end
+	end
+	
     
 end
