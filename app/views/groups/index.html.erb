@@ -1,0 +1,9 @@
+<% @groups.each do |group| %>
+
+<%= image_tag group.get_image(100,100) %>
+<%= group.name %>
+<%= group.introduction %>
+
+<%= link_to "Edit" ,edit_group_path(group.id) ,class: "btn btn-sucesess" %>
+
+<% end %>

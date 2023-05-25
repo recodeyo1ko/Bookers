@@ -1,0 +1,16 @@
+<h1>Create group</h1>
+
+<%= form_with model: @group do |f| %>
+
+<%= f.text_field :name %>
+
+
+<%= f.text_field :introduction %>
+
+<h4>Image</h4>
+<%= f.file_field :profile_image, accept: "image/*" , class: "from-control uesr_profile_image" %>
+
+<%= f.submit %>
+
+
+<% end %>
