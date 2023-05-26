@@ -6,14 +6,16 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.all
+    @user = current_user
+    @book = Book.new
   end
 
   def show
-    @group = Group.find(:id)
+    @group = Group.find(params[:id])
   end
 
   def edit
-    @group = Group.find(:id)
+    @group = Group.find(params[:id])
   end
 
   def create
@@ -23,13 +25,13 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find(:id)
+    @group = Group.find(params[:id])
   end
 
   private
 
   def group_params
-    params.require(:group).permit(:name , :introduction , :image)
+    params.require(:group).permit(:name , :introduction , :image, :owner_id)
   end
 
 end
