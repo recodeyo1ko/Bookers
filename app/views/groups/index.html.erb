@@ -1,9 +1,41 @@
-<% @groups.each do |group| %>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <%= render'users/userinfo', user: @user , book: @book_new %>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Groups</h2>
 
-<%= image_tag group.get_image(100,100) %>
-<%= group.name %>
-<%= group.introduction %>
+      <%= link_to "グループを作成する" , new_group_path %> / <%= link_to "グループ一覧" , groups_path %>
 
-<%= link_to "Edit" ,edit_group_path(group.id) ,class: "btn btn-sucesess" %>
-
-<% end %>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td>
+                <%= image_tag group.get_image(100,100) %>
+              </td>
+              <td>
+                <%= group.name %>
+              </td>
+              <td>
+                <%= group.introduction %>
+              </td>
+              <td>
+                <% if group.owner_id == current_user.id %>
+                  <%= link_to "Edit" ,edit_group_path(group.id) ,class: "btn btn-success" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

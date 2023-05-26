@@ -1,16 +1,23 @@
-<h1>Create group</h1>
+<div class = "container">
+  <div class = "row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Create Group</h1>
+      <%= form_with model: @group do |f| %>
+        <h4>グループ名</h4>
+        <%= f.text_field :name ,class:"form-control"%>
 
-<%= form_with model: @group do |f| %>
+        <h4>紹介文</h4>
+        <%= f.text_area :introduction ,class:"form-control"%>
 
-<%= f.text_field :name %>
+        <h4>グループ画像</h4>
+        <%= f.file_field :profile_image, accept: "image/*" , class: "from-control" %>
 
+        <%= f.hidden_field :owner_id , :value => current_user.id %>
 
-<%= f.text_field :introduction %>
+        <%= f.submit class: "btn btn-info d-block mt-3" %>
+      <% end %>
 
-<h4>Image</h4>
-<%= f.file_field :profile_image, accept: "image/*" , class: "from-control uesr_profile_image" %>
-
-<%= f.submit %>
-
-
-<% end %>
+      
+    </div>
+  </div>
+</div>
