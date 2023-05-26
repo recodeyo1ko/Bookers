@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
+
+  resources :groups
 end

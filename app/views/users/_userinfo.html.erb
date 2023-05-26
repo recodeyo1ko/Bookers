@@ -15,8 +15,8 @@
           </tr>
         </tbody>
       </table>
-      <div class='row'>
-        <%= link_to edit_user_path(user), class: " btn-outline-secondary btn-sm mt-4" do %>
+      <div>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
           <i class="fas fa-user-cog"></i>
         <% end %>
       </div>
@@ -25,10 +25,10 @@
       <%= form_with model: book do |f| %>
 
         <h4>title</h4>
-        <%= f.text_field :title %>
+        <%= f.text_field :title , class: "form-control" %>
 
         <h4>opinion</h4>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book', class: "btn btn-success"%>
+        <%= f.text_area :body , class: "form-control" %>
+        <%= f.submit 'Create Book', class: "btn btn-success mt-3 form-control"%>
       <% end %>
     </div>

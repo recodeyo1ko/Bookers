@@ -1,31 +1,36 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-    <%= render'userinfo', user: @user , book: @book_new %>
+    <%= render'users/userinfo', user: @user , book: @book_new %>
     <div class='col-md-8 offset-md-1'>
-      <h2>users</h2>
+      <h2>Groups</h2>
 
       <%= link_to "グループを作成する" , new_group_path %> / <%= link_to "グループ一覧" , groups_path %>
 
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
-            <th>image</th>
-            <th>name</th>
             <th></th>
-            <th colspan="3"></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
+          <% @groups.each do |group| %>
             <tr>
               <td>
-                <%= image_tag user.get_profile_image(100,100) %>
+                <%= image_tag group.get_image(100,100) %>
               </td>
               <td>
-                <%= user.name %>
+                <%= group.name %>
               </td>
               <td>
-                <%= link_to "Show", user_path(user.id) %>
+                <%= group.introduction %>
+              </td>
+              <td>
+                <% if group.owner_id == current_user.id %>
+                  <%= link_to "Edit" ,edit_group_path(group.id) ,class: "btn btn-success" %>
+                <% end %>
               </td>
             </tr>
           <% end %>
