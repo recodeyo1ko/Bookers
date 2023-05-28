@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :users
 
   resources :groups
+  get "groups/:id/join" => "groups#join", as: "group_join"
+  delete "groups/:id/leave" => "groups#leave", as: "group_leave"
 end
