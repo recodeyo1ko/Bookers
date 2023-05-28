@@ -9,6 +9,7 @@
             <th></th>
             <th>グループ名</th>
             <th>紹介文</th>
+            <th>メンバー</th>
             <th></th>
           </tr>
         </thead>
@@ -24,8 +25,20 @@
                 <%= @group.introduction %>
               </td>
               <td>
+                <%= @user_belongs_to_group.name%>(owner)
+                <% @group.group_users.each do |group_user| %>
+                  <br><%= group_user.user.name %>
+                <% end %>
+              </td>
+              <td>
                 <% if @group.owner_id == current_user.id %>
-                  <%= link_to "Edit" ,edit_group_path(group.id) ,class: "btn btn-success" %>
+                  <%= link_to "Edit" ,edit_group_path(@group.id) ,class: "btn btn-success" %>
+                <% else %>
+                  <% if @group.group_users.find_by(user_id: current_user.id)%>
+                    <%= link_to "Leave this group" , group_leave_path , method: :delete %>
+                  <% else %>
+                    <%= link_to "Join this group" , group_join_path %>
+                  <% end %>
                 <% end %>
               </td>
             </tr>

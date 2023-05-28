@@ -11,7 +11,10 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @book = Book.new
     @group = Group.find(params[:id])
+    @user_belongs_to_group = User.find(@group.owner_id)
   end
 
   def edit
@@ -27,6 +30,20 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
   end
+
+  def join
+    group = Group.find(params[:id])
+    group.users << current_user
+    group.save!
+    redirect_to group_path(group.id)
+  end
+
+  def leave
+    group = Group.find(params[:id])
+    group.users.delete(current_user)
+    redirect_to groups_path
+  end
+  
 
   private
 
