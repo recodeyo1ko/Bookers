@@ -1,7 +1,7 @@
 # README
 
-main
-task-a
-task-b
-task-c
-task-d
+- main
+- task-a
+- task-b
+- task-c
+- task-d
