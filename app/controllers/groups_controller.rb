@@ -35,14 +35,14 @@ class GroupsController < ApplicationController
   end
 
   def join
-    group = Group.find(params[:id])
+    group = Group.find(params[:group_id])
     group.users << current_user
     group.save!
     redirect_to group_path(group.id)
   end
 
   def leave
-    group = Group.find(params[:id])
+    group = Group.find(params[:group_id])
     group.users.delete(current_user)
     redirect_to groups_path
   end
