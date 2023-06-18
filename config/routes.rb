@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :groups do 
     get "join" => "groups#join", as: "join"
     delete "leave" => "groups#leave", as: "leave"
-    get "new_notice" => "groups#new_notice", as: "new_notice"
-    post "send_notice" => "groups#send_notice", as: "send_notice"
+    resources :notices, only: [:new, :create]
+    get "notices" => "notices#sent"
 
   end
 end
