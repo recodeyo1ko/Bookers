@@ -11,6 +11,7 @@
             <th>紹介文</th>
             <th>メンバー</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -35,10 +36,15 @@
                   <%= link_to "Edit" ,edit_group_path(@group.id) ,class: "btn btn-success" %>
                 <% else %>
                   <% if @group.group_users.find_by(user_id: current_user.id)%>
-                    <%= link_to "Leave this group" , group_leave_path , method: :delete %>
+                    <%= link_to "Leave this group" , group_leave_path(@group.id) , method: :delete %>
                   <% else %>
-                    <%= link_to "Join this group" , group_join_path %>
+                    <%= link_to "Join this group" , group_join_path(@group.id) %>
                   <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% if @group.owner_id == current_user.id %>
+                  <%= link_to "Notice an Event" ,new_group_notice_path(@group.id) ,class: "btn btn-info" %>
                 <% end %>
               </td>
             </tr>

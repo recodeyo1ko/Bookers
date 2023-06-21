@@ -29,22 +29,24 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
+    @group.update(group_params)
+    redirect_to group_path(@group.id)
+
   end
 
   def join
-    group = Group.find(params[:id])
+    group = Group.find(params[:group_id])
     group.users << current_user
     group.save!
     redirect_to group_path(group.id)
   end
 
   def leave
-    group = Group.find(params[:id])
+    group = Group.find(params[:group_id])
     group.users.delete(current_user)
     redirect_to groups_path
   end
-  
-
+    
   private
 
   def group_params

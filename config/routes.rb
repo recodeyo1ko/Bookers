@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :books
   resources :users
 
-  resources :groups
-  get "groups/:id/join" => "groups#join", as: "group_join"
-  delete "groups/:id/leave" => "groups#leave", as: "group_leave"
+  resources :groups do 
+    get "join" => "groups#join", as: "join"
+    delete "leave" => "groups#leave", as: "leave"
+    resources :notices, only: [:new, :create]
+    get "notices" => "notices#sent"
+
+  end
 end
