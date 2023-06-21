@@ -1,12 +1,21 @@
 class NoticeMailer < ApplicationMailer
-  def send_notification(member, event)
+  def send_notification(group, event)
     @group = event[:group]
     @title = event[:title]
     @body = event[:body]
     
-    @mail = EventMailer.new()
+    @mail = NoticeMailer.new()
     mail(
-      to:   member.email
+      # to:   member.email
+      to:'suzuki.ryohei.infratop@gmail.com', subject: 'Action Mailerからのお知らせ'
     )
   end
+
+  def self.send_notifications_to_group(event)
+    group = event[:group]
+    # group.users.each do |member|
+    NoticeMailer.send_notification(group, event).deliver_now
+    # end
+  end
+  
 end
