@@ -7,7 +7,7 @@ class NoticeMailer < ApplicationMailer
     @mail = NoticeMailer.new()
     mail(
       # to:   member.email
-      to:'suzuki.ryohei.infratop@gmail.com', subject: 'Action Mailerからのお知らせ'
+      to:'xxxx.test', subject: 'Action Mailerからのお知らせ'
     )
   end
 
