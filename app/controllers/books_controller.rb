@@ -5,6 +5,11 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @books = Book.all
     @user = current_user
+    if params[:sort] == "star"
+      @books = @books.sort_by { |book| book.star }.reverse
+    else
+      @books.sort { |book| book.created_at }
+    end
   end
 
   def show
@@ -19,6 +24,7 @@ class BooksController < ApplicationController
 
   def create
     @book_new = Book.new(book_params)
+    @book_new.star = 0 if @book_new.star.nil?
     @book_new.user_id = current_user.id
     if @book_new.save
       flash[:notice] = "Book was successfully created"
