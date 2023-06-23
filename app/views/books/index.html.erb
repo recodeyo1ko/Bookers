@@ -36,6 +36,9 @@
               <td>
                 <%= book.body %>
               </td>
+              <td>
+                <%= render "star", book: book %>
+              </td>
             </tr>
           <% end %>
         </tbody>
