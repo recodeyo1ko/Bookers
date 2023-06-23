@@ -1,7 +1,20 @@
-# README
+# Bookers
+posting-book
 
-- use docker
-- `yarn install` & `rails db:migrate` in container
+## front & back
+
+- ruby on rails
+
+## Usage
+
+### local
+
+- `bundle install`,`yarn install`, `rails db:migrate`, `rails db:seed`
+
+### docker
+
+- `docker compose build`,`docker compose up (-d)`, `docker exec -it bookers sh`
+- `yarn install`, `rails db:migrate`, `rails db:seed` in container
 
 - main
   - posting-site
