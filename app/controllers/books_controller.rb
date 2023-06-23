@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: %i[edit update]
 
   def index
     @book_new = Book.new
@@ -57,5 +57,4 @@ class BooksController < ApplicationController
     @user = @book.user
     redirect_to(books_path) unless @user == current_user
   end
-
 end
