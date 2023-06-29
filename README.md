@@ -13,7 +13,7 @@ posting-book
 
 ### docker
 
-- `docker compose build`,`docker compose up (-d)`, `docker exec -it bookers sh`
+- `docker compose build`,`docker compose up (-d)`, `docker compose exec -it bookers sh`
 - `yarn install`, `rails db:migrate`, `rails db:seed` in container
 
 - main
