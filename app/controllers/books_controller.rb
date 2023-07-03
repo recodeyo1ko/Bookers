@@ -26,6 +26,18 @@ class BooksController < ApplicationController
     @book_new = Book.new(book_params)
     @book_new.star = 0 if @book_new.star.nil?
     @book_new.user_id = current_user.id
+    
+    params[:book][:tag_name].split.each do |tag_name|
+      if Tag.find_by(name: tag_name).nil?
+        @tag = Tag.new(name: tag_name)
+        @tag.save!
+        @book_new.tags << @tag
+      else
+        @tag = Tag.find_by(name: tag_name)
+        @book_new.tags << @tag
+      end
+    end
+
     if @book_new.save
       flash[:notice] = "Book was successfully created"
       redirect_to book_path(@book_new.id)
