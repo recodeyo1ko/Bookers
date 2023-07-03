@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
+
+  get "search" => "searches#tag_search", :as => "search"
+
 end

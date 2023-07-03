@@ -13,10 +13,6 @@
     <%= render'users/userinfo',user: @user,book: @book_new %>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= form_with url: search_path, method: :get do |f| %>
-        <%= f.text_field :tag_name %>
-        <%= f.submit 'Tag Search', class: "btn btn-secondary"%>
-      <% end %>
       <%= link_to "新しい順", books_path%>|<%= link_to "評価の高い順", books_path(params: { sort: "star" })%>
       <table class='table table-hover table-inverse'>
         <thead>
@@ -48,7 +44,7 @@
                 <% end %>
               </td>
               <td>
-                <%= render "star", book: book %>
+                <%= render "books/star", book: book %>
               </td>
             </tr>
           <% end %>
