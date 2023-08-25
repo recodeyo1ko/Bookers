@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-
+  acts_as_taggable_on :tags
   belongs_to :user
 
   validates :title, presence: true

@@ -26,7 +26,12 @@
 
     <h4>opinion</h4>
     <%= f.text_area :body ,class:" btn-block"%>
+
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, value: book.tag_list.join(','), class: 'form-control' %>
+
     
-    <%= f.submit 'Create Book', class: "btn btn-success btn-block"%>
+    
+    <%= f.submit 'Create Book', class: "btn btn-success btn-block my-1"%>
   <% end %>
 </div>
