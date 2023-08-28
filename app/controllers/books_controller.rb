@@ -3,8 +3,13 @@ class BooksController < ApplicationController
 
   def index
     @book_new = Book.new
-    @books = Book.all
     @user = current_user
+    @q = Book.ransack(params[:q])
+    if params[:q].present?
+      @books = @q.result(distinct: true)
+    else
+      @books = Book.all
+    end
   end
 
   def show
@@ -44,6 +49,12 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
+  end
+
+
+  def search
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
   end
 
   private
