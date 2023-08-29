@@ -1,13 +1,28 @@
+  <h1>New book</h1>
+  <%= form_with model: book do |f| %>
 
-<h1>New book</h1>
-<%= form_with model: book do |f| %>
+    <h4>title</h4>
+    <%= f.text_field :title ,class:" btn-block" %>
 
-<h4>title</h4>
-<%= f.text_field :title, class:" btn-block"%>
+    <h4>opinion</h4>
+    <%= f.text_area :body ,class:" btn-block"%>
+    <h4>tag</h4>
+    <%= f.text_field :tag_name ,class:" btn-block" %>
 
-<h4>opinion</h4>
-<%= f.text_area :body ,class:" btn-block"%>
-<div class = "mt-3"></div>
-<%= f.submit 'Create Book', class: "btn btn-success"%>
-
-<% end %>
+    <div id="post_raty"></div>
+    <script>
+      // scriptファイルをどのidの部分に配置するかを指定
+      let elem = document.querySelector('#post_raty');
+      let opt = {  
+        //星画像の指定などのオプションをここに記述,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'book[star]',
+      half: true
+      };
+      raty(elem,opt);
+    </script>
+    
+    <%= f.submit 'Create Book', class: "btn btn-success btn-block"%>
+  <% end %>
