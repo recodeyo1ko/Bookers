@@ -9,19 +9,10 @@
 <%= flash[:notice] %>
 
 <div class='container px-5 px-sm-0'>
-  <div class="row justify-content-center" ><%= render 'searches/search' %></div>
   <div class='row'>
-    <div class='col-md-3'>
-      <%= render'users/userinfo',user: @user %>
-      <%= render'new_book',book: @book_new %>
-    </div>
-    
+    <%= render'users/userinfo',user: @user,book: @book_new %>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= form_with url: search_path, method: :get do |f| %>
-        <%= f.text_field :tag_name %>
-        <%= f.submit 'Tag Search', class: "btn btn-secondary"%>
-      <% end %>
       <%= link_to "新しい順", books_path%>|<%= link_to "評価の高い順", books_path(params: { sort: "star" })%>
       <table class='table table-hover table-inverse'>
         <thead>
@@ -49,29 +40,11 @@
               </td>
               <td>
                 <% book.tags.each do |tag| %>
-                  <%= link_to tag.name , search_path(tag_name: tag.name)%><br>
+                  <%= link_to tag.name , search_path(tag_name: tag.name)%>
                 <% end %>
               </td>
               <td>
-                <%= render "star", book: book %>
-              <td>
-                <% if book.favorited_by?(current_user) %>
-                    <%= link_to book_favorites_path(book.id),class: "text-danger", method: :delete do %>
-                      <i class="fa fa-heart "></i><%= book.favorites.count %>
-                    <% end %>
-                  <% else %>
-                    <%= link_to book_favorites_path(book.id), method: :post do %>
-                      <i class="fa fa-heart "></i><%= book.favorites.count %>
-                    <% end %>
-
-                <% end %>
-              </td>
-
-              <td>
-                コメント件数：<%= book.book_comments.count %>
-              </td>
-              <td>
-                閲覧数：<%= book.view_count%>
+                <%= render "books/star", book: book %>
               </td>
             </tr>
           <% end %>
