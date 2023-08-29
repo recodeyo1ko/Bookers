@@ -1,34 +1,38 @@
 <div class='col-md-3'>
-      <h2>User info</h2>
-      <table class='table'>
-        <tbody>
-          <tr></tr>
-          <tr>
-            <%= image_tag user.get_profile_image(100,100) %>
-            <th>name</th>
-            <th><%= user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= user.introduction %></th>
-            <th></th>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-          <i class="fas fa-user-cog"></i>
-        <% end %>
-      </div>
+  <h2>User info</h2>
+  <table class='table'>
+    <tbody>
+      <tr><%= image_tag user.get_profile_image(100,100) %></tr>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+      <tr>
+        <th>フォロー数</th>
+         <td>
+          <%= link_to user_followings_path(user) do %>
+            <%= user.followings.count %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>フォロワー数</th>
+        <th>
+          <%= link_to user_followers_path(user) do %>
+            <%= user.followers.count %>
+          <% end %>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+</div>
 
-      <h1>New book</h1>
-      <%= form_with model: book do |f| %>
-
-        <h4>title</h4>
-        <%= f.text_field :title , class: "form-control" %>
-
-        <h4>opinion</h4>
-        <%= f.text_area :body , class: "form-control" %>
-        <%= f.submit 'Create Book', class: "btn btn-success mt-3 form-control"%>
-      <% end %>
-    </div>
