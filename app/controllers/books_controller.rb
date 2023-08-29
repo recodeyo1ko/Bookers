@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @books = Book.all
     @user = current_user
+    @slides = Book.all
   end
 
   def show
