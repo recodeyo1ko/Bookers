@@ -13,13 +13,17 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "@fortawesome/fontawesome-free/js/all";
-
 import Raty from "raty.js";
 window.raty = function (elem, opt) {
   let raty = new Raty(elem, opt);
   raty.init();
   return raty;
 };
+
+// require("chartkick")
+// require("chart.js")
+import Chart from "chart.js/auto";
+global.Chart = Chart;
 
 Rails.start();
 Turbolinks.start();

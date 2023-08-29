@@ -11,13 +11,30 @@
         <th>introduction</th>
         <th><%= user.introduction %></th>
       </tr>
+      <tr>
+        <th>フォロー数</th>
+         <td>
+          <%= link_to user_followings_path(user) do %>
+            <%= user.followings.count %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>フォロワー数</th>
+        <th>
+          <%= link_to user_followers_path(user) do %>
+            <%= user.followers.count %>
+          <% end %>
+        </th>
+      </tr>
+
     </tbody>
   </table>
-  
-    <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
 
+  <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+  
   <h1>New book</h1>
   <%= form_with model: book do |f| %>
 

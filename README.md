@@ -1,38 +1,18 @@
-# README
+# Bookers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+posting-book
 
-Things you may want to cover:
+## front & back
 
-* Ruby version
+- ruby on rails
 
-* System dependencies
+## Usage
 
-* Configuration
+### local
 
-* Database creation
+- `bundle install`,`yarn install`, `rails db:migrate`, `rails db:seed`
 
-* Database initialization
+### docker
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-|課題番号	| 要件|
-|--|--|
-|課題 7d|ユーザ自身の投稿にのみ、5 段階評価をつけられる。|
-||評価をつけられるタイミングは、投稿時に限定|
-||本の一覧ページと詳細ページに 5 段階評価を表示させる|
-||ユーザーの詳細ページに 5 段階評価を表示させる|
-||一度評価をつけたら変えられない|
-|課題 8d|	本の一覧ページで新着順で並ぶようにする|
-||本の一覧ページで評価の高い順で並ぶようにする|
-||本の一覧ページで新着順と評価の高い順の切り替えができる|
-|課題 9d|	本の投稿をする際にカテゴリタグを追加できる|
-||作成したタグで検索ができる|
-||作成したタグのリンクをクリックすると検索ができる|
+- `docker compose build`,`docker compose up (-d)`, `docker compose exec -it bookers sh`
+- `yarn install`, `rails db:migrate`, `rails db:seed` in container

@@ -1,0 +1,15 @@
+
+
+
+
+<%= form_with url: user_search_path(user), method: :get ,local: false do |f| %>
+  <%= f.date_field :created_at %>
+  <%= f.submit "検索" %>
+<% end %>
+
+検索結果
+<% if search_book.present? %>
+  <%= search_book.count %>
+<% else %>
+  0
+<% end %>
