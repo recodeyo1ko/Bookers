@@ -21,5 +21,11 @@ Rails.application.routes.draw do
   get "search_result" => "searches#search_result"
   resources :chats, only: [:show, :create]
 
+  resources :groups do 
+    get "join" => "groups#join", as: "join"
+    delete "leave" => "groups#leave", as: "leave"
+    resources :notices, only: [:new, :create]
+    get "notices" => "notices#sent"
 
+  end
 end
