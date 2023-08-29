@@ -1,30 +1,33 @@
-# README
+# Bookers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+posting-book
 
-Things you may want to cover:
+## front & back
 
-* Ruby version
+- ruby on rails
 
-* System dependencies
+## Usage
 
-* Configuration
+### local
 
-* Database creation
+- `bundle install`,`yarn install`, `rails db:migrate`, `rails db:seed`
 
-* Database initialization
+### docker
 
-* How to run the test suite
+- `docker compose build`,`docker compose up (-d)`, `docker compose exec -it bookers sh`
+- `yarn install`, `rails db:migrate`, `rails db:seed` in container
 
-* Services (job queues, cache servers, search engines, etc.)
+- main
+  - posting-site
+- task-a
+  - SNS
+- task-b
+  - record
+- task-c
+  - community
+- task-d
+  - review
 
-* Deployment instructions
+## todo
 
-|課題|要件|
-|--|--|
-|課題 7a|	本の投稿一覧ページで、過去一週間でいいねの合計カウントが多い順に投稿を表示|
-|課題 8a|	ユーザ同士で 1 対 1 の DM ができるようにする|
-||相互フォローしている人限定で DM 機能を使えるようにする|
-|課題 9a|	ページの閲覧数をカウントし、投稿一覧、投稿詳細に表示させる|
-||※ 閲覧数は、各投稿へアクセスした数を集計してください||
+
