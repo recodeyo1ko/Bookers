@@ -9,8 +9,13 @@
 <%= flash[:notice] %>
 
 <div class='container px-5 px-sm-0'>
+  <div class="row justify-content-center" ><%= render 'searches/search' %></div>
   <div class='row'>
-    <%= render'users/userinfo',user: @user,book: @book_new %>
+    <div class='col-md-3'>
+      <%= render'users/userinfo',user: @user %>
+      <%= render'new_book',book: @book_new %>
+    </div>
+    
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <table class='table table-hover table-inverse'>
@@ -19,7 +24,7 @@
             <th></th>
             <th>Title</th>
             <th>Opinion</th>
-            <th colspan="3"></th>
+            <th colspan="4"></th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +40,26 @@
               </td>
               <td>
                 <%= book.body %>
+              </td>
+
+              <td>
+                <% if book.favorited_by?(current_user) %>
+                    <%= link_to book_favorites_path(book.id),class: "text-danger", method: :delete do %>
+                      <i class="fa fa-heart "></i><%= book.favorites.count %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to book_favorites_path(book.id), method: :post do %>
+                      <i class="fa fa-heart "></i><%= book.favorites.count %>
+                    <% end %>
+
+                <% end %>
+              </td>
+
+              <td>
+                コメント件数：<%= book.book_comments.count %>
+              </td>
+              <td>
+                閲覧数：<%= book.view_count%>
               </td>
             </tr>
           <% end %>
