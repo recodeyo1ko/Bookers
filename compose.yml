@@ -8,3 +8,5 @@ services:
       FRONTEND_ORIGIN: http://localhost:3000
     stdin_open: true
     tty: true
+    volumes:
+      - .:/usr/src/

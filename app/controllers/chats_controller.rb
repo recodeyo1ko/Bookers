@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-	before_action :matual_follows?, only: [:show,:create]
+	before_action :matual_follows?, only: [:show]
 
 	def show
 		@user = User.find(params[:id])
