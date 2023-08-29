@@ -79,4 +79,9 @@
       </table>
     </div>
   </div>
+      <div class="slider">
+        <% @slides.each do |slide| %>
+          <p><%= image_tag slide.user.get_profile_large_image(300,300), class: 'slider-item rounded' %></p>
+        <% end %>
+      </div>
 </div>

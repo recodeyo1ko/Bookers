@@ -15,6 +15,7 @@ class BooksController < ApplicationController
     # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
 
     @user = current_user
+    @slides = Book.all
     if params[:sort] == "star"
       @books = @books.sort_by { |book| book.star }.reverse
     else

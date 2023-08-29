@@ -13,6 +13,8 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "@fortawesome/fontawesome-free/js/all";
+require("./slick");
+
 import Raty from "raty.js";
 window.raty = function (elem, opt) {
   let raty = new Raty(elem, opt);
@@ -25,6 +27,8 @@ window.raty = function (elem, opt) {
 import Chart from "chart.js/auto";
 global.Chart = Chart;
 
+
 Rails.start();
+// はずしたほうがいいかも
 Turbolinks.start();
 ActiveStorage.start();
