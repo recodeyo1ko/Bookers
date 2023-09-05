@@ -3,6 +3,12 @@ class BooksController < ApplicationController
 
   def index
     @book_new = Book.new
+    @user = current_user
+    @q = Book.ransack(params[:q])
+    if params[:q].present?
+      @books = @q.result(distinct: true)
+    else
+      @books = Book.all
     #@books = Book.all
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
@@ -14,7 +20,6 @@ class BooksController < ApplicationController
     
     # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
 
-    @user = current_user
     @slides = Book.all
     if params[:sort] == "star"
       @books = @books.sort_by { |book| book.star }.reverse
@@ -75,6 +80,12 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
+  end
+
+
+  def search
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
   end
 
   private
