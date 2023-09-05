@@ -2,11 +2,13 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_tags, dependent: :destroy
   has_many :tags, through: :book_tags, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
-  has_many :favorites, dependent: :destroy
-  has_many :book_comments, dependent: :destroy
+
+  acts_as_taggable_on :tags
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

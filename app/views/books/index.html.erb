@@ -65,6 +65,7 @@
                 <%= book.body %>
               </td>
               <td>
+                <%= render 'books/tag_lists', tag_list: book.tag_list %>
                 <% book.tags.each do |tag| %>
                   <%= link_to tag.name , search_path(tag_name: tag.name)%><br>
                 <% end %>
