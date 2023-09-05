@@ -9,7 +9,9 @@
 <%= flash[:notice] %>
 
 <div class='container px-5 px-sm-0'>
-  <div class="row justify-content-center" ><%= render 'searches/search' %></div>
+  <%# <div class="row justify-content-center" >
+    <%= render 'searches/search' %>
+  <%# </div> %>
   <div class='row'>
     <div class='col-md-3'>
       <%= render'users/userinfo',user: @user %>
@@ -33,7 +35,11 @@
         <%= f.text_field :tag_name %>
         <%= f.submit 'Tag Search', class: "btn btn-secondary"%>
       <% end %>
-      <%= link_to "新しい順", books_path%>|<%= link_to "評価の高い順", books_path(params: { sort: "star" })%>
+      <%= link_to "新しい順", books_path(params: { sort: "created_at" }), class: 'btn btn-primary'%>
+      <%= link_to "評価の高い順", books_path(params: { sort: "star" }), class: 'btn btn-primary'%>
+      <%= link_to "閲覧数の多い順", books_path(params: { sort: "view_count" }), class: 'btn btn-primary'%>
+      <%= link_to "コメントの多い順", books_path(params: { sort: "comment_count" }), class: 'btn btn-primary'%>
+      <%= link_to "いいねの多い順", books_path(params: { sort: "favorite_count" }), class: 'btn btn-primary'%>
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
@@ -92,8 +98,8 @@
   </div>
       <h2>登録ユーザー一覧</h2>
       <div class="slider">
-        <% @slides.each do |slide| %>
-          <p><%= image_tag slide.user.get_profile_large_image(300,300), class: 'slider-item rounded' %></p>
+        <% @slide_users.each do |slide_user| %>
+          <p><%= image_tag slide_user.get_profile_large_image(300,300), class: 'slider-item rounded' %></p>
         <% end %>
       </div>
 </div>

@@ -4,28 +4,38 @@ class BooksController < ApplicationController
   def index
     @book_new = Book.new
     @user = current_user
-    @q = Book.ransack(params[:q])
-    if params[:q].present?
+    @slide_users = User.all
+    if Book.ransack(params[:q]).present?
+      @q = Book.ransack(params[:q])
       @books = @q.result(distinct: true)
     else
       @books = Book.all
-    #@books = Book.all
-    to = Time.current.at_end_of_day
-    from = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorites).
-    sort {|a,b| 
-      b.favorites.includes(:favorites).where(created_at: from...to).size <=> 
-      a.favorites.includes(:favorites).where(created_at: from...to).size
-    }
+    end
+
+    # to = Time.current.at_end_of_day
+    # from = (to - 6.day).at_beginning_of_day
+    # @books = @books.includes(:favorites).
+    # sort {|a,b| 
+    #   b.favorites.includes(:favorites).where(created_at: from...to).size <=> 
+    #   a.favorites.includes(:favorites).where(created_at: from...to).size
+    # }
     
     # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
 
-    @slides = Book.all
-    if params[:sort] == "star"
+    if params[:sort] == "created_at"
+      @books = @books.sort { |book| book.created_at }
+    elsif params[:sort] == "star"
       @books = @books.sort_by { |book| book.star }.reverse
+    elsif params[:sort] == "view_count"
+      @books = @books.sort_by { |book| book.view_count }.reverse
+    elsif params[:sort] == "favorite_count"
+      @books = @books.sort_by { |book| book.favorites.count }.reverse
+    elsif params[:sort] == "comment_count"
+      @books = @books.sort_by { |book| book.book_comments.count }.reverse
     else
-      @books.sort { |book| book.created_at }
+      @books = @books
     end
+
   end
 
   def show
