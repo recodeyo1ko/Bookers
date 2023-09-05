@@ -11,7 +11,7 @@
           <%= link_to "フォローする", user_relationships_path(@user.id), method: :post ,class: "btn btn-primary"%>
         <% end %>
         </div>
-      <%= render'books/new_book',book: @book_new %>
+      <%= render'books/new_book',book_new: @book_new %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>

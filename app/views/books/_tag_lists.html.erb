@@ -1,5 +1,5 @@
-<% tag_list.each do |tag|%>
-  <div class="btn btn-primary">
+<% tag_lists.each do |tag| %>
+  <%= link_to books_path(q: {tag_list: tag}), class:"btn btn-primary m-1" do%>
     <%= tag %>
-  </div>
+  <% end %>
 <% end %>

@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <%= render'users/userinfo',user: @user %>
-      <%= render'new_book',book: @book_new %>
+      <%= render'new_book',book_new: @book_new %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Book detail</h2>
@@ -31,9 +31,9 @@
                 <%= render "star", book: @book %>
               </td>
               <% if @book.user == current_user %>
-                <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
+                <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success" %></td>
 
-                <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure？" %></td>
+                <td><%= link_to "Destroy", book_path(@book.id), method: :delete, class: "btn btn-danger", "data-confirm" => "Are you sure？" %></td>
               <% end %>
 
               <td>

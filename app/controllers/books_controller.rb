@@ -5,22 +5,14 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = current_user
     @slide_users = User.all
-    if Book.ransack(params[:q]).present?
-      @q = Book.ransack(params[:q])
-      @books = @q.result(distinct: true)
-    else
+    @q = Book.ransack(params[:q])
+    if params[:q]&.fetch(:tag_list, nil).nil?
       @books = Book.all
+    elsif params[:q][:tag_list].present?
+      @books = @q.result(distinct: true).tagged_with(params[:q][:tag_list])
+    else
+      @books = @q.result(distinct: true)
     end
-
-    # to = Time.current.at_end_of_day
-    # from = (to - 6.day).at_beginning_of_day
-    # @books = @books.includes(:favorites).
-    # sort {|a,b| 
-    #   b.favorites.includes(:favorites).where(created_at: from...to).size <=> 
-    #   a.favorites.includes(:favorites).where(created_at: from...to).size
-    # }
-    
-    # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
 
     if params[:sort] == "created_at"
       @books = @books.sort { |book| book.created_at }
@@ -54,23 +46,14 @@ class BooksController < ApplicationController
     @book_new = Book.new(book_params)
     @book_new.star = 0 if @book_new.star.nil?
     @book_new.user_id = current_user.id
-    
-    params[:book][:tag_name].split.each do |tag_name|
-      if Tag.find_by(name: tag_name).nil?
-        @tag = Tag.new(name: tag_name)
-        @tag.save!
-        @book_new.tags << @tag
-      else
-        @tag = Tag.find_by(name: tag_name)
-        @book_new.tags << @tag
-      end
-    end
 
     if @book_new.save
       flash[:notice] = "Book was successfully created"
       redirect_to book_path(@book_new.id)
     else
+      @q = Book.ransack(params[:q])
       @books = Book.all
+      @slide_users = User.all
       @user = current_user
       render :index
     end

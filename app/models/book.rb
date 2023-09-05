@@ -1,7 +1,5 @@
 class Book < ApplicationRecord
   belongs_to :user
-  has_many :book_tags, dependent: :destroy
-  has_many :tags, through: :book_tags, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 
@@ -15,7 +13,7 @@ class Book < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["body", "created_at", "id", "title", "updated_at", "user_id"]
+    ["body", "created_at", "id", "title", "updated_at", "user_id", "tag_list"]
   end
   
    def self.looks(search, word)
