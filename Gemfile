@@ -60,3 +60,6 @@ gem 'devise'
 gem "net-smtp"
 
 gem 'acts-as-taggable-on', '~> 9.0'
+gem 'ransack'
+gem 'jquery-rails'
+gem "chartkick"
