@@ -59,3 +59,7 @@ gem 'devise'
 gem "net-smtp"
 gem 'rails-i18n'
 gem 'devise-i18n'
+gem 'acts-as-taggable-on', '~> 9.0'
+gem 'ransack'
+gem 'jquery-rails'
+gem "chartkick"
