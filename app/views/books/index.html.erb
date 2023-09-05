@@ -9,8 +9,13 @@
 <%= flash[:notice] %>
 
 <div class='container px-5 px-sm-0'>
+  <div class="row justify-content-center" ><%= render 'searches/search' %></div>
   <div class='row'>
-    <%= render'users/userinfo',user: @user,book: @book_new %>
+    <div class='col-md-3'>
+      <%= render'users/userinfo',user: @user %>
+      <%= render'new_book',book: @book_new %>
+    </div>
+    
     <div class='col-md-8 offset-md-1'>
     <div class="py-3">
       <%= search_form_for @q, url: books_path, method: :get, html: {class: 'form-inline'} do |f| %>
@@ -24,12 +29,18 @@
       <% end %>
     </div>
       <h2>Books</h2>
+      <%= form_with url: search_path, method: :get do |f| %>
+        <%= f.text_field :tag_name %>
+        <%= f.submit 'Tag Search', class: "btn btn-secondary"%>
+      <% end %>
+      <%= link_to "新しい順", books_path%>|<%= link_to "評価の高い順", books_path(params: { sort: "star" })%>
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
             <th></th>
             <th>Title</th>
             <th>Opinion</th>
+            <th>Tag</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -47,10 +58,42 @@
               <td>
                 <%= book.body %>
               </td>
+              <td>
+                <% book.tags.each do |tag| %>
+                  <%= link_to tag.name , search_path(tag_name: tag.name)%><br>
+                <% end %>
+              </td>
+              <td>
+                <%= render "star", book: book %>
+              <td>
+                <% if book.favorited_by?(current_user) %>
+                    <%= link_to book_favorites_path(book.id),class: "text-danger", method: :delete do %>
+                      <i class="fa fa-heart "></i><%= book.favorites.count %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to book_favorites_path(book.id), method: :post do %>
+                      <i class="fa fa-heart "></i><%= book.favorites.count %>
+                    <% end %>
+
+                <% end %>
+              </td>
+
+              <td>
+                コメント件数：<%= book.book_comments.count %>
+              </td>
+              <td>
+                閲覧数：<%= book.view_count%>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
+      <h2>登録ユーザー一覧</h2>
+      <div class="slider">
+        <% @slides.each do |slide| %>
+          <p><%= image_tag slide.user.get_profile_large_image(300,300), class: 'slider-item rounded' %></p>
+        <% end %>
+      </div>
 </div>

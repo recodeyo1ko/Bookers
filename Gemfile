@@ -59,3 +59,5 @@ gem 'devise'
 
 gem "net-smtp"
 gem 'ransack'
+gem 'jquery-rails'
+gem "chartkick"
