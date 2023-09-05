@@ -56,5 +56,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-
 gem "net-smtp"
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'acts-as-taggable-on', '~> 9.0'
+gem 'ransack'
+gem 'jquery-rails'
+gem "chartkick"
