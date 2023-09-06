@@ -29,12 +29,12 @@ global.Chart = Chart;
 
 Rails.start();
 // はずしたほうがいいかも
-Turbolinks.start();
+// Turbolinks.start();
 ActiveStorage.start();
 
 jQuery(document).on("turbolinks:load", function () {
-  $("#user_postalcode").jpostal({
-    postcode: ["#user_postalcode"],
+  $("#user_postcode").jpostal({
+    postcode: ["#user_postcode"],
     address: {
       "#user_prefecture_code": "%3",
       "#user_address_city": "%4%5",
