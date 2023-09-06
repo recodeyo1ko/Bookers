@@ -7,12 +7,12 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @user = current_user
-    @book = Book.new
+    @book_new = Book.new
   end
 
   def show
     @user = current_user
-    @book = Book.new
+    @book_new = Book.new
     @group = Group.find(params[:id])
     @user_belongs_to_group = User.find(@group.owner_id)
   end

@@ -10,7 +10,7 @@
         <%= f.text_area :introduction ,class:"form-control"%>
 
         <h4>グループ画像</h4>
-        <%= f.file_field :profile_image, accept: "image/*" , class: "from-control" %>
+        <%= f.file_field :image, accept: "image/*" , class: "from-control" %>
 
         <%= f.hidden_field :owner_id , :value => current_user.id %>
 

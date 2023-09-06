@@ -9,33 +9,33 @@
 
         <div class="field">
           <%= f.label :name %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "email" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "email", class: 'form-control', placeholder:"東京塔" %>
         </div>
 
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder:"Tokyo.tower@gmail.com" %>
         </div>
 
         <div class="field">
           <%= f.label :postcode, '郵便番号' %>
-          <%= f.text_field :postcode, autocomplete: 'postcode', class: 'form-control' %>
+          <%= f.text_field :postcode, autocomplete: 'postcode', class: 'form-control', placeholder:"1050011" %>
         </div>
         <div class="field">
           <%= f.label :prefecture_name, '都道府県' %>
-          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, class: 'form-control' %>
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '東京都 (郵便番号から推測されます。)' }, class: 'form-control' %>
         </div>
         <div class="field">
           <%= f.label :address_city, '市区町村' %>
-          <%= f.text_field :address_city, autocomplete: 'address_city', class: 'form-control' %>
+          <%= f.text_field :address_city, autocomplete: 'address_city', class: 'form-control', placeholder:"港区" %>
         </div>
         <div class="field">
           <%= f.label :address_street, '番地' %>
-          <%= f.text_field :address_street, autocomplete: 'address_street', class: 'form-control' %>
+          <%= f.text_field :address_street, autocomplete: 'address_street', class: 'form-control', placeholder:"芝公園四丁目2番8号" %>
         </div>
         <div class="field">
           <%= f.label :address_building, '建物' %>
-          <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control' %>
+          <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control', placeholder:"1A" %>
         </div>
 
         <div class="field">
@@ -43,16 +43,16 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
         </div>
 
         <div class="field">
           <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
         </div>
 
-        <div class="actions">
-          <%= f.submit "Sign up" %>
+        <div class="actions my-3">
+          <%= f.submit "Sign up", class: "btn btn-primary" %>
         </div>
       <% end %>
 

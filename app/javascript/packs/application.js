@@ -29,7 +29,7 @@ global.Chart = Chart;
 
 Rails.start();
 // はずしたほうがいいかも
-// Turbolinks.start();
+Turbolinks.start();
 ActiveStorage.start();
 
 jQuery(document).on("turbolinks:load", function () {

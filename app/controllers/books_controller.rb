@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   def index
     @book_new = Book.new
     @user = current_user
-    @slide_users = User.all
     @q = Book.ransack(params[:q])
     if params[:q]&.fetch(:tag_list, nil).nil?
       @books = Book.all
@@ -53,7 +52,6 @@ class BooksController < ApplicationController
     else
       @q = Book.ransack(params[:q])
       @books = Book.all
-      @slide_users = User.all
       @user = current_user
       render :index
     end

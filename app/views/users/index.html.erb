@@ -5,7 +5,12 @@
       <%= render'books/new_book', book_new: @book_new %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>users</h2>
+      <h2>登録ユーザー一覧</h2>
+      <div class="slider">
+        <% @users.each do |user| %>
+          <p><%= image_tag user.get_profile_large_image(300,300), class: 'slider-item rounded' %></p>
+        <% end %>
+      </div>
 
       <%= link_to "グループを作成する" , new_group_path ,class: "btn btn-primary"%> 
       <%= link_to "グループ一覧" , groups_path, class: "btn btn-primary"%>

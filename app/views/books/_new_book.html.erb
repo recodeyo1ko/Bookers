@@ -9,13 +9,14 @@
   <% end %>
   <%= form_with model: book_new do |f| %>
 
-    <h4>title</h4>
-    <%= f.text_field :title ,class:" btn-block" %>
+    <h4><%= f.label :title %></h4>
+    <%= f.text_field :title ,class:"form-control" %>
 
-    <h4>opinion</h4>
-    <%= f.text_area :body ,class:" btn-block"%>
-    <h4>tag</h4>
-    <%= f.text_field :tag_list, value: book_new.tag_list.join(',') ,class:" btn-block" %>
+    <h4><%= f.label :body, "Opinion"%></h4>
+    <%= f.text_area :body ,class:"form-control"%>
+    <h4><%= f.label :tag_list, "Tag" %></h4>
+    <small>(複数で区切る場合は半角カンマ)</small>
+    <%= f.text_field :tag_list, value: book_new.tag_list.join(',') ,class:"form-control" %>
 
     <div id="post_raty"></div>
     <script>
