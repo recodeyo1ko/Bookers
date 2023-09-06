@@ -60,6 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (9.0.1)
+      activerecord (>= 6.0, < 7.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.18)
@@ -77,6 +79,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (5.0.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     devise (4.8.1)
@@ -85,8 +88,14 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.10.2)
+      devise (>= 4.8.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.11.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -96,6 +105,7 @@ GEM
     faker (2.22.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    geocoder (1.8.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -107,6 +117,11 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jp_prefecture (1.1.1)
+    jquery-rails (4.6.0)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -166,6 +181,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
+    rails-i18n (7.0.7)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (6.1.6.1)
       actionpack (= 6.1.6.1)
       activesupport (= 6.1.6.1)
@@ -173,6 +191,10 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
     rake (13.0.6)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -251,19 +273,28 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 9.0)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 2.15)
+  chartkick
   devise
+  devise-i18n
+  dotenv-rails
   factory_bot_rails
   faker
+  geocoder
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
+  jp_prefecture
+  jquery-rails
   listen (~> 3.3)
   net-smtp
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.6, >= 6.1.6.1)
+  rails-i18n
+  ransack
   rspec-rails
   sass-rails (>= 6)
   spring

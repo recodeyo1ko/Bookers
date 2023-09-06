@@ -1,4 +1,5 @@
 # Bookers
+
 posting-book
 
 ## front & back
@@ -16,13 +17,3 @@ posting-book
 - `docker compose build`,`docker compose up (-d)`, `docker compose exec -it bookers sh`
 - `yarn install`, `rails db:migrate`, `rails db:seed` in container
 
-- main
-  - posting-site
-- task-a
-  - SNS
-- task-b
-  - record
-- task-c
-  - community
-- task-d
-  - review

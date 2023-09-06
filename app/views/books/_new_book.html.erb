@@ -1,0 +1,38 @@
+  <h1>New book</h1>
+  <% if book_new.errors.any? %>
+    <%= book_new.errors.count %>errors prohibited this book from being saved:
+    <ul>
+    <% book_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  <%= form_with model: book_new do |f| %>
+
+    <h4><%= f.label :title %></h4>
+    <%= f.text_field :title ,class:"form-control" %>
+
+    <h4><%= f.label :body, "Opinion"%></h4>
+    <%= f.text_area :body ,class:"form-control"%>
+    <h4><%= f.label :tag_list, "Tag" %></h4>
+    <small>(複数で区切る場合は半角カンマ)</small>
+    <%= f.text_field :tag_list, value: book_new.tag_list.join(',') ,class:"form-control" %>
+
+    <div id="post_raty"></div>
+    <script>
+      // scriptファイルをどのidの部分に配置するかを指定
+      let elem = document.querySelector('#post_raty');
+      let opt = {  
+        //星画像の指定などのオプションをここに記述,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'book[star]',
+      half: true
+      };
+      raty(elem,opt);
+    </script>
+    <div class= "py-3">
+        <%= f.submit 'Create Book', class: "btn btn-success btn-block"%>
+    </div>
+  <% end %>

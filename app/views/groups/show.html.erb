@@ -1,0 +1,58 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render'users/userinfo',user: @user %>
+      <%= render'books/new_book',book_new: @book_new %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Group detail</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>
+                <%= image_tag @group.get_image(100,100) %>
+              </td>
+              <td>
+                <%= @group.name %>
+              </td>
+              <td>
+                <%= @group.introduction %>
+              </td>
+              <td>
+                <%= @user_belongs_to_group.name%>(owner)
+                <% @group.group_users.each do |group_user| %>
+                  <br><%= group_user.user.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if @group.owner_id == current_user.id %>
+                  <%= link_to "Edit" ,edit_group_path(@group.id) ,class: "btn btn-success" %>
+                <% else %>
+                  <% if @group.group_users.find_by(user_id: current_user.id)%>
+                    <%= link_to "Leave this group" , group_leave_path(@group.id) , method: :delete %>
+                  <% else %>
+                    <%= link_to "Join this group" , group_join_path(@group.id) %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% if @group.owner_id == current_user.id %>
+                  <%= link_to "Notice an Event" ,new_group_notice_path(@group.id) ,class: "btn btn-info" %>
+                <% end %>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

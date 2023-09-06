@@ -1,0 +1,12 @@
+<%= search_form_for q, url: books_path, method: :get, html: {class: 'form-inline'} do |f| %>
+  <div class='form-group'>
+    <%= f.search_field :title_cont, class: 'form-control mr-2', placeholder: 'title' %>
+  </div>
+  <div class='form-group'>
+    <%= f.search_field :body_cont, class: 'form-control mr-2', placeholder: 'body' %>
+  </div>
+  <div>
+    <%= f.search_field :tag_list, class: 'form-control mr-2', placeholder: 'tag' %>
+  </div>
+  <%= f.submit 'Search', class: 'btn btn-outline-success' %>
+<% end %>
