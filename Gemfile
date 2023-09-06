@@ -63,3 +63,6 @@ gem 'acts-as-taggable-on', '~> 9.0'
 gem 'ransack'
 gem 'jquery-rails'
 gem "chartkick"
+gem 'dotenv-rails'
+gem "geocoder"
+gem "jp_prefecture"

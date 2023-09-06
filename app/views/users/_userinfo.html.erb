@@ -11,6 +11,21 @@
       <th><%= user.introduction %></th>
     </tr>
     <tr>
+      <th>郵便番号</th>
+      <th><%= user.postcode %></th>
+    <tr>
+      <th>都道府県</th>
+      <th><%= user.prefecture_name %></th>
+    </tr>
+    <tr>
+      <th>市区町村</th>
+      <th><%= user.address_city %></th>
+    </tr>
+    <tr>
+      <th>番地</th>
+      <th><%= user.address_street %></th>
+    </tr>
+    <tr>
       <th>フォロー数</th>
         <th>
         <%= link_to user_followings_path(user) do %>
