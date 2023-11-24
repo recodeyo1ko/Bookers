@@ -1,19 +1,27 @@
 # Bookers
 
-posting-book
+本の投稿サイトです。
 
-## front & back
+## 特徴
 
-- ruby on rails
+- ログイン機能
+- 本の投稿
 
-## Usage
+## 始め方
 
-### local
+### 前提条件
 
-- `bundle install`,`yarn install`, `rails db:migrate`, `rails db:seed`
+- Ruby 3.1.2
+- Rails 6.1.6
 
-### docker
+### コマンド
 
-- `docker compose build`,`docker compose up (-d)`, `docker compose exec -it bookers sh`
-- `yarn install`, `rails db:migrate`, `rails db:seed` in container
+- docker で立ち上げる場合は compose run でコマンドを実行してください。
+- サンプルの挿入は`rails db:seed`を実行してください。
 
+```
+bundle install
+yarn install
+rails db:migrate
+rails s
+```
