@@ -11,12 +11,12 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh \
 
 RUN npm install -g yarn
 
-WORKDIR ${ROOT}
-COPY Gemfile ${ROOT}
-COPY Gemfile.lock ${ROOT}
-
+COPY . /usr/src
+WORKDIR /usr/src/bookers
 RUN bundle install
-COPY . ${ROOT}
+COPY . .
+
+RUN rm -f tmp/pids/server.pid
 
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
